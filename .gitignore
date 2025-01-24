@@ -1,24 +1,34 @@
-# Compiled class file
-*.class
+# Diretórios do Maven
+target/
+!src/main/resources/static/
 
-# Log file
+# Diretórios do Gradle
+.gradle/
+build/
+
+# Configurações do IntelliJ IDEA
+*.iml
+.idea/
+
+# Configurações do Eclipse
+.project
+.classpath
+.settings/
+
+# Arquivos de Log
 *.log
 
-# BlueJ files
-*.ctxt
+# Arquivos de ambiente
+.env
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# Dependências do sistema operacional
+.DS_Store
+Thumbs.db
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# Arquivos temporários
+*.swp
+*.swo
+
+# Credenciais e configurações locais
+application.yml

@@ -5,13 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <changeSet id="20250123-2" author="pedro">
         <createTable schemaName="users" tableName="users">
-            <column name="id" type="BIGINT">
+            <column name="email" type="TEXT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="TEXT">
                 <constraints nullable="false"/>
             </column>
-            <column name="email" type="TEXT">
+            <column name="adress" type="TEXT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="country_code" type="TEXT">
                 <constraints nullable="false"/>
             </column>
             <column name="password" type="TEXT">
@@ -20,8 +23,10 @@
             <column name="created_at" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
+            <column name="updated_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
             <column name="last_login" type="TIMESTAMP"/>
         </createTable>
     </changeSet>
-
 </databaseChangeLog>

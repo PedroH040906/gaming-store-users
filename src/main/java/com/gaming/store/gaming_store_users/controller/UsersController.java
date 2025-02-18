@@ -27,9 +27,7 @@ public class UsersController {
     }
 
     @PostMapping
-    ResponseEntity createUser(
-            @Valid
-            @RequestBody UsersDTO userDto) {
+    ResponseEntity createUser(@Valid @RequestBody UsersDTO userDto) {
         try {
             return new ResponseEntity<>(this.usersService.createUser(userDto), HttpStatus.CREATED);
         } catch (Exception e) {

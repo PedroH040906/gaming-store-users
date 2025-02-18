@@ -15,13 +15,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable()) // Desativa CSRF
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/users").permitAll() // Permite criar usuário sem autenticação
+        http.csrf(csrf -> csrf.disable()) // Desativa CSRF
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/users").permitAll() // Permite criar usuário sem autenticação
                         .anyRequest().authenticated() // Todas as outras rotas exigem login
-                )
-                .formLogin(form -> form.disable()) // Desativa login via formulário
+                ).formLogin(form -> form.disable()) // Desativa login via formulário
                 .httpBasic(httpBasic -> httpBasic.disable()); // Desativa autenticação básica
 
         return http.build();

@@ -13,16 +13,7 @@ public class EntityToDtoMapper {
 
     // Converte Users para UsersDTO
     public static UsersDTO mapUserToUserDto(Users users) {
-        return new UsersDTO(
-                users.getEmail(),
-                users.getName(),
-                users.getAdress(),
-                users.getCountry_code(),
-                users.getPassword(),
-                users.getUpdated_at(),
-                users.getCreated_at(),
-                users.getLast_login()
-        );
+        return new UsersDTO(users.getEmail(), users.getName(), users.getAdress(), users.getCountryCode(), users.getPassword(), users.getUpdatedAt(), users.getCreatedAt(), users.getLastLogin());
     }
 
     // Converte UsersDTO para Users (Novo Usuário)
@@ -31,13 +22,13 @@ public class EntityToDtoMapper {
         users.setEmail(usersDTO.getEmail());
         users.setName(usersDTO.getName());
         users.setAdress(usersDTO.getAdress());
-        users.setCountry_code(usersDTO.getCountry_code());
+        users.setCountryCode(usersDTO.getCountryCode());
         users.setPassword(passwordEncoder.encode(usersDTO.getPassword()));
-        users.setUpdated_at(LocalDateTime.now());
-        users.setCreated_at(LocalDateTime.now()); // ✅ Correção aqui
+        users.setUpdatedAt(LocalDateTime.now());
+        users.setCreatedAt(LocalDateTime.now()); // ✅ Correção aqui
 
         // Garante que lastLogin seja null na criação do usuário
-        users.setLast_login(null);
+        users.setLastLogin(null);
         return users;
     }
 }

@@ -14,14 +14,16 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    public UsersResponseDTO createUser (UsersDTO userDTO) {
+    public UsersResponseDTO createUser(UsersDTO userDTO) {
         if (usersRepository.existsById(userDTO.getEmail())) {
             throw new RuntimeException("E-mail já cadastrado.");
         }
 
-        Users userToBeCreated = EntityToDtoMapper.mapUserDtoToUser (userDTO);
-        Users savedUser  = usersRepository.save(userToBeCreated);
+        Users userToBeCreated = EntityToDtoMapper.mapUserDtoToUser(userDTO);
+        Users savedUser = usersRepository.save(userToBeCreated);
 
-        return new UsersResponseDTO(savedUser );
+        return new UsersResponseDTO(savedUser);
     }
+
+
 }

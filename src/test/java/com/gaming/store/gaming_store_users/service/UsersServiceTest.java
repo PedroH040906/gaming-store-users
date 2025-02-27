@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
@@ -64,6 +63,28 @@ class UsersServiceTest {
         RuntimeException exception = assertThrows(RuntimeException.class, () -> usersService.createUser(usersDTO));
 
         assertEquals("E-mail já cadastrado.", exception.getMessage());
+        verify(usersRepository, never()).save(any(Users.class));
+    }
+
+    @Test
+    void updateUserInfo_Success() {
+        when(usersRepository.findById(usersDTO.getEmail())).thenReturn(Optional.of(users));
+        when(usersRepository.save(any(Users.class))).thenReturn(users);
+
+        UsersResponseDTO responseDTO = usersService.updateUserInfo(usersDTO);
+
+        assertNotNull(responseDTO);
+        assertEquals(usersDTO.getName(), responseDTO.name());
+        verify(usersRepository, times(1)).save(any(Users.class));
+    }
+
+    @Test
+    void updateUserInfo_ShouldThrowException_WhenEmailNotFound() {
+        when(usersRepository.findById(usersDTO.getEmail())).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> usersService.updateUserInfo(usersDTO));
+
+        assertEquals("E-mail não encontrado.", exception.getMessage());
         verify(usersRepository, never()).save(any(Users.class));
     }
 }

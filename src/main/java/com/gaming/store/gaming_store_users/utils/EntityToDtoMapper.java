@@ -25,7 +25,7 @@ public class EntityToDtoMapper {
         users.setCountryCode(usersDTO.getCountryCode());
         users.setPassword(passwordEncoder.encode(usersDTO.getPassword()));
         users.setUpdatedAt(LocalDateTime.now());
-        users.setCreatedAt(LocalDateTime.now()); // ✅ Correção aqui
+        users.setCreatedAt(LocalDateTime.now());
 
         // Garante que lastLogin seja null na criação do usuário
         users.setLastLogin(null);
